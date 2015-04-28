@@ -4,7 +4,7 @@ package com.weixin.response;
  * 语音消息
  * 
  */
-public class VoiceMessage extends BaseMessage {
+public class VoiceMessageResp extends BaseMessageResp {
 	// 语音
 	private Voice Voice;
 

@@ -6,7 +6,7 @@ package com.weixin.request;
  * @author 半夏微凉
  *
  */
-public class VideoMessage extends BaseMessage {
+public class VideoMessageReq extends BaseMessageReq {
 
 	/**
 	 * 媒体ID

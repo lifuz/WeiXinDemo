@@ -1,16 +1,18 @@
-package com.weixin.response;
+package com.weixin.request;
 
 /**
- * 消息基类（公众帐号 -> 用户）
+ * 收到消息基类（用户 -> 公众帐号）
+ * 
  */
-public class BaseMessage {
+
+public class BaseMessageReq {
 
 	/**
-	 * 接收方帐号（收到的OpenID）
+	 * 开发者微信号
 	 */
 	private String ToUserName;
 	/**
-	 * 开发者微信号
+	 * 发送方帐号（一个OpenID）
 	 */
 	private String FromUserName;
 	/**
@@ -19,14 +21,14 @@ public class BaseMessage {
 	private long CreateTime;
 
 	/**
-	 * 消息类型
+	 * 消息类型 text、image、location、link
 	 */
 	private String MsgType;
 
 	/**
-	 * 位0x0001被标志时，星标刚收到的消息
+	 * 消息id，64位整型
 	 */
-	private int FuncFlag;
+	private long MsgId;
 
 	public String getToUserName() {
 		return ToUserName;
@@ -60,11 +62,21 @@ public class BaseMessage {
 		MsgType = msgType;
 	}
 
-	public int getFuncFlag() {
-		return FuncFlag;
+	public long getMsgId() {
+		return MsgId;
 	}
 
-	public void setFuncFlag(int funcFlag) {
-		FuncFlag = funcFlag;
+	public void setMsgId(long msgId) {
+		MsgId = msgId;
 	}
+
+	@Override
+	public String toString() {
+		return "BaseMessage [ToUserName=" + ToUserName + ", FromUserName="
+				+ FromUserName + ", CreateTime=" + CreateTime + ", MsgType="
+				+ MsgType + ", MsgId=" + MsgId + "]";
+	}
+
+	
+	
 }

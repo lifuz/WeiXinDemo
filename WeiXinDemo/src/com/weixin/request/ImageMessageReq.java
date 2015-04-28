@@ -3,7 +3,7 @@ package com.weixin.request;
 /**
  *	收到图片消息
  */
-public class ImageMessage extends BaseMessage {
+public class ImageMessageReq extends BaseMessageReq {
 	
 	/**
 	 * 收到的图片链接

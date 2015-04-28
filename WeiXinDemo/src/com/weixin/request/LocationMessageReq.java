@@ -6,7 +6,7 @@ package com.weixin.request;
  * @author 半夏微凉
  *
  */
-public class LocationMessage extends BaseMessage {
+public class LocationMessageReq extends BaseMessageReq {
 	/**
 	 * 地理位置维度
 	 */

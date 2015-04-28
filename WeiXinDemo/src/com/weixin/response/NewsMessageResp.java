@@ -7,7 +7,7 @@ import java.util.List;
  * 单图文的时候 Articles 只放一个就行了
  * @author Caspar.chen
  */
-public class NewsMessage extends BaseMessage {
+public class NewsMessageResp extends BaseMessageResp {
 	/**
 	 * 图文消息个数，限制为10条以内
 	 */

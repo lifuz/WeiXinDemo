@@ -3,7 +3,7 @@ package com.weixin.response;
 /**
  * 音乐消息
  */
-public class MusicMessage extends BaseMessage {
+public class MusicMessageResp extends BaseMessageResp {
 	/**
 	 * 音乐
 	 */

@@ -3,7 +3,7 @@ package com.weixin.request;
 /**
  * 收到的链接消息
  */
-public class LinkMessage extends BaseMessage {
+public class LinkMessageReq extends BaseMessageReq {
 
 	/**
 	 * 消息标题

@@ -3,12 +3,12 @@ package com.weixin.util;
 import org.dom4j.Document;
 import org.dom4j.Element;
 
-import com.weixin.request.ImageMessage;
-import com.weixin.request.LinkMessage;
-import com.weixin.request.LocationMessage;
-import com.weixin.request.TextMessage;
-import com.weixin.request.VideoMessage;
-import com.weixin.request.VoiceMessage;
+import com.weixin.request.ImageMessageReq;
+import com.weixin.request.LinkMessageReq;
+import com.weixin.request.LocationMessageReq;
+import com.weixin.request.TextMessageReq;
+import com.weixin.request.VideoMessageReq;
+import com.weixin.request.VoiceMessageReq;
 
 /**
  * 
@@ -26,10 +26,10 @@ public class MessageToObject {
 	 * @param document
 	 * @return
 	 */
-	public static TextMessage messageToText(Document document) {
+	public static TextMessageReq messageToText(Document document) {
 		
 		Element root = document.getRootElement();
-		TextMessage tm = new TextMessage();
+		TextMessageReq tm = new TextMessageReq();
 		tm.setFromUserName(root.elementText("FromUserName"));
 		tm.setToUserName(root.elementText("ToUserName"));
 		tm.setCreateTime(Long.parseLong(root.elementText("CreateTime")));
@@ -46,10 +46,10 @@ public class MessageToObject {
 	 * @param document
 	 * @return
 	 */
-	public static ImageMessage messageToImage(Document document) {
+	public static ImageMessageReq messageToImage(Document document) {
 
 		Element root = document.getRootElement();
-		ImageMessage im = new ImageMessage();
+		ImageMessageReq im = new ImageMessageReq();
 		im.setFromUserName(root.elementText("FromUserName"));
 		im.setToUserName(root.elementText("ToUserName"));
 		im.setCreateTime(Long.parseLong(root.elementText("CreateTime")));
@@ -67,10 +67,10 @@ public class MessageToObject {
 	 * @param document
 	 * @return
 	 */
-	public static VoiceMessage messageToVoiec(Document document) {
+	public static VoiceMessageReq messageToVoiec(Document document) {
 		
 		Element root = document.getRootElement();
-		VoiceMessage vm= new VoiceMessage();
+		VoiceMessageReq vm= new VoiceMessageReq();
 		vm.setFromUserName(root.elementText("FromUserName"));
 		vm.setToUserName(root.elementText("ToUserName"));
 		vm.setCreateTime(Long.parseLong(root.elementText("CreateTime")));
@@ -88,10 +88,10 @@ public class MessageToObject {
 	 * @param document
 	 * @return
 	 */
-	public static VideoMessage messageToVideo(Document document) {
+	public static VideoMessageReq messageToVideo(Document document) {
 		
 		Element root = document.getRootElement();
-		VideoMessage vm = new VideoMessage();
+		VideoMessageReq vm = new VideoMessageReq();
 		vm.setFromUserName(root.elementText("FromUserName"));
 		vm.setToUserName(root.elementText("ToUserName"));
 		vm.setCreateTime(Long.parseLong(root.elementText("CreateTime")));
@@ -109,10 +109,10 @@ public class MessageToObject {
 	 * @param document
 	 * @return
 	 */
-	public static LocationMessage messageToLocation(Document document) {
+	public static LocationMessageReq messageToLocation(Document document) {
 		
 		Element root = document.getRootElement();
-		LocationMessage lm = new LocationMessage();
+		LocationMessageReq lm = new LocationMessageReq();
 		lm.setFromUserName(root.elementText("FromUserName"));
 		lm.setToUserName(root.elementText("ToUserName"));
 		lm.setCreateTime(Long.parseLong(root.elementText("CreateTime")));
@@ -132,10 +132,10 @@ public class MessageToObject {
 	 * @param document
 	 * @return
 	 */
-	public static LinkMessage messageToLink(Document document) {
+	public static LinkMessageReq messageToLink(Document document) {
 		
 		Element root = document.getRootElement();
-		LinkMessage lm = new LinkMessage();
+		LinkMessageReq lm = new LinkMessageReq();
 		lm.setFromUserName(root.elementText("FromUserName"));
 		lm.setToUserName(root.elementText("ToUserName"));
 		lm.setCreateTime(Long.parseLong(root.elementText("CreateTime")));

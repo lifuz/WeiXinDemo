@@ -4,7 +4,7 @@ package com.weixin.response;
  * 图片消息
  * 
  */
-public class ImageMessage extends BaseMessage {
+public class ImageMessageResp extends BaseMessageResp {
 	// 图片
 	private Image Image;
 

@@ -1,13 +1,14 @@
-package com.weixin.request;
+package com.weixin.response;
 
 /**
- * 文本消息
+ * 回复文本消息
+ * 
+ * @author 半夏微凉
+ *
  */
-
-public class TextMessage extends BaseMessage {
-
+public class TextMessageResp extends BaseMessageResp {
 	/**
-	 * 收到的消息内容
+	 * 回复的消息内容
 	 */
 	private String Content;
 
@@ -18,5 +19,4 @@ public class TextMessage extends BaseMessage {
 	public void setContent(String content) {
 		Content = content;
 	}
-
 }

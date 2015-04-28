@@ -14,7 +14,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
-import com.weixin.request.TextMessage;
+import com.weixin.request.TextMessageReq;
 import com.weixin.util.MessageToObject;
 import com.weixin.util.Utils;
 
@@ -100,7 +100,8 @@ public class Control extends HttpServlet {
 		switch (msgType) {
 		// 文本消息
 		case "text":
-			TextMessage tm = MessageToObject.messageToText(document);
+			TextMessageReq tm = MessageToObject.messageToText(document);
+			
 
 			break;
 		// 图片消息

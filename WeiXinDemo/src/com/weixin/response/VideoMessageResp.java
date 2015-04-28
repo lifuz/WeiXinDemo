@@ -3,7 +3,7 @@ package com.weixin.response;
  * 视频消息
  *
  */
-public class VideoMessage extends BaseMessage {
+public class VideoMessageResp extends BaseMessageResp {
 	// 视频
 	private Video Video;
 
