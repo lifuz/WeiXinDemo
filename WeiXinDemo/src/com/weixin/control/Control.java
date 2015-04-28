@@ -1,7 +1,10 @@
 package com.weixin.control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +17,16 @@ import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 
+import com.weixin.request.ImageMessageReq;
 import com.weixin.request.TextMessageReq;
+import com.weixin.request.VoiceMessageReq;
+import com.weixin.response.Article;
+import com.weixin.response.Image;
+import com.weixin.response.ImageMessageResp;
+import com.weixin.response.NewsMessageResp;
+import com.weixin.response.TextMessageResp;
 import com.weixin.util.MessageToObject;
+import com.weixin.util.ObjectToMessage;
 import com.weixin.util.Utils;
 
 /**
@@ -101,17 +112,75 @@ public class Control extends HttpServlet {
 		// 文本消息
 		case "text":
 			TextMessageReq tm = MessageToObject.messageToText(document);
+			TextMessageResp tmr = new TextMessageResp();
+			tmr.setToUserName(tm.getFromUserName());
+			tmr.setFromUserName(tm.getToUserName());
+			tmr.setContent(tm.getContent());
+			tmr.setCreateTime(new Date().getTime());
+			tmr.setFuncFlag(0);
+			tmr.setMsgType(tm.getMsgType());
+			outStr = ObjectToMessage.messageToXml(tmr);
 			
 
 			break;
 		// 图片消息
 		case "image":
 
+			ImageMessageReq im = MessageToObject.messageToImage(document);
+			ImageMessageResp imr = new ImageMessageResp();
+			imr.setToUserName(im.getFromUserName());
+			imr.setFromUserName(im.getToUserName());
+			imr.setCreateTime(new Date().getTime());
+			imr.setFuncFlag(0);
+			imr.setMsgType(im.getMsgType());
+			Image image = new Image();
+			image.setMediaId(im.getMediaId());
+			imr.setImage(image);
+			outStr = ObjectToMessage.messageToXml(imr);
+			
+			
+//			TextMessageResp tmr1 = new TextMessageResp();
+//			tmr1.setToUserName(im.getFromUserName());
+//			tmr1.setFromUserName(im.getToUserName());
+//			tmr1.setContent("nihao");
+//			tmr1.setCreateTime(new Date().getTime());
+//			tmr1.setFuncFlag(0);
+//			tmr1.setMsgType("text");
+//			outStr = ObjectToMessage.messageToXml(tmr1);
+//			
+			
 			break;
 
 		// 语音消息
 		case "voice":
 
+			VoiceMessageReq vm = MessageToObject.messageToVoiec(document);
+			NewsMessageResp nm = new NewsMessageResp();
+			List<Article> list = new ArrayList<Article>();
+			Article at = new Article();
+			at.setDescription("我是来测试的");
+			at.setPicUrl("http://prd.hhzn.cn/WeiXinDemo/image/lifuz.jpg");
+			at.setTitle("测试一下");
+			at.setUrl("https://github.com/");
+			list.add(at);
+			at = new Article();
+			at.setDescription("我是来测试的");
+			at.setPicUrl("http://prd.hhzn.cn/WeiXinDemo/image/lifuz.jpg");
+			at.setTitle("测试一下");
+			at.setUrl("https://github.com/");
+			list.add(at);
+			nm.setArticles(list);
+			nm.setToUserName(vm.getFromUserName());
+			nm.setFromUserName(vm.getToUserName());
+			nm.setFuncFlag(0);
+			nm.setMsgType("news");
+			nm.setCreateTime(new Date().getTime());
+			nm.setArticleCount(list.size());
+			
+			outStr = ObjectToMessage.messageToXml(nm);
+			
+			
+			
 			break;
 
 		// 视频消息
@@ -171,6 +240,18 @@ public class Control extends HttpServlet {
 		default:
 			break;
 		}
+		
+		response.setCharacterEncoding("utf-8");
+		
+		try {
+			response.getWriter().print(outStr);
+			response.getWriter().flush();
+			response.getWriter().close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 
 	}
 

@@ -71,6 +71,7 @@ public class ObjectToMessage {
 	 */
 	public static String messageToXml(ImageMessageResp imageMessage) {
 		xstream.alias("xml", imageMessage.getClass());
+		
 		return xstream.toXML(imageMessage);
 	}
 

@@ -6,7 +6,7 @@ package com.weixin.response;
  * 
  */
 public class Image {
-	// ý���ļ�id
+	// 媒体id
 	private String MediaId;
 
 	public String getMediaId() {
