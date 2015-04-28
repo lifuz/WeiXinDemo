@@ -98,38 +98,72 @@ public class Control extends HttpServlet {
 		// 根据msgType得到应该转换的类，且根据内容，进行逻辑处理
 
 		switch (msgType) {
-			//文本消息
+		// 文本消息
 		case "text":
 			TextMessage tm = MessageToObject.messageToText(document);
-			
+
 			break;
-			//图片消息
+		// 图片消息
 		case "image":
 
 			break;
-			
-			//语音消息
+
+		// 语音消息
 		case "voice":
 
 			break;
-			
-			//视频消息 
+
+		// 视频消息
 		case "video":
 
 			break;
-			
-			//小视频消息
+
+		// 小视频消息
 		case "shortvideo":
 
 			break;
-			
-			//地理位置消息
+
+		// 地理位置消息
 		case "location":
 
 			break;
-			
-			//链接消息
+
+		// 链接消息
 		case "link":
+
+			break;
+
+		case "event":
+
+			// 根据事件类型，选择处理逻辑
+			switch (root.elementText("Event")) {
+			// 订阅事件，分为不带参数和带参数
+			case "subscribe":
+
+				break;
+			// 取消订阅事件
+			case "unsubscribe":
+
+				break;
+			// 扫描带参数二维码事件, 用户已关注时的事件推送
+			case "SCAN":
+
+				break;
+			// 上报地理位置事件
+			case "LOCATION":
+
+				break;
+			// 自定义菜单事件
+			// 点击菜单拉取消息时的事件推送
+			case "CLICK":
+
+				break;
+			// 点击菜单跳转链接时的事件推送
+			case "VIEW":
+
+				break;
+
+			}
 
 			break;
 
