@@ -10,6 +10,14 @@ import com.weixin.request.TextMessage;
 import com.weixin.request.VideoMessage;
 import com.weixin.request.VoiceMessage;
 
+/**
+ * 
+ * 这个类的主要目的是把xml文件转换成与类型一致的对象
+ * 要求把xml的每个节点都解析出来
+ * @author 半夏微凉
+ *
+ */
+
 public class MessageToObject {
 
 	/**
