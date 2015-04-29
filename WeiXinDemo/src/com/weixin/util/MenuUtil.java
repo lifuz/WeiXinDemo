@@ -3,7 +3,11 @@ package com.weixin.util;
 import com.weixin.menu.Menu;
 
 import net.sf.json.JSONObject;
-
+/**
+ * 自定义菜单工具类
+ * @author 半夏微凉
+ *
+ */
 public class MenuUtil {
 
 	// 菜单创建（POST）
@@ -25,14 +29,16 @@ public class MenuUtil {
 	public static boolean createMenu(Menu menu, String accessToken) {
 		boolean result = false;
 		String url = menu_create_url.replace("ACCESS_TOKEN", accessToken);
+		
 		// 将菜单对象转换成json字符串
 		String jsonMenu = JSONObject.fromObject(menu).toString();
+		System.out.println(jsonMenu);
 		// 发起POST请求创建菜单
 		JSONObject jsonObject = CommonUtil.httpsRequest(url, "POST", jsonMenu);
 
 		if (null != jsonObject) {
 			int errorCode = jsonObject.getInt("errcode");
-
+			System.out.println(errorCode);
 			if (0 == errorCode) {
 				result = true;
 			} else {

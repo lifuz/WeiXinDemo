@@ -6,7 +6,7 @@ package com.weixin.menu;
  * @author 半夏微凉
  *
  */
-public class ComplexButtom extends Button {
+public class ComplexButton extends Button {
 	
 	private Button[] sub_button;
 
