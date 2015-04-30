@@ -4,18 +4,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Cache-Control" content="no-cache" />
+<meta name="viewport"
+	content="width=device-width, minimum-scale=1.0, maximum-scale=2.0" />
+<title>云智造监控</title>
 </head>
 <body>
 
 	<table>
 		<tr>
-			<td>温度</td>
+			<td>大棚温度</td>
 			<td><%=request.getAttribute("wendu")%>
 		</tr>
-		
+
 		<tr>
-			<td>湿度</td>
+			<td>大棚湿度</td>
 			<td><%=request.getAttribute("shidu")%>
 		</tr>
 

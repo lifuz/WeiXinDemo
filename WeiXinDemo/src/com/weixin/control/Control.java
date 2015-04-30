@@ -161,13 +161,13 @@ public class Control extends HttpServlet {
 			at.setDescription("我是来测试的");
 			at.setPicUrl("http://prd.hhzn.cn/WeiXinDemo/image/lifuz.jpg");
 			at.setTitle("测试一下");
-			at.setUrl("https://github.com/");
+			at.setUrl("http://prd.hhzn.cn/WeiXinDemo/Wendu");
 			list.add(at);
 			at = new Article();
 			at.setDescription("我是来测试的");
 			at.setPicUrl("http://prd.hhzn.cn/WeiXinDemo/image/lifuz.jpg");
 			at.setTitle("测试一下");
-			at.setUrl("https://github.com/");
+			at.setUrl("http://prd.hhzn.cn/WeiXinDemo/Wendu");
 			list.add(at);
 			nm.setArticles(list);
 			nm.setToUserName(vm.getFromUserName());
