@@ -1,10 +1,55 @@
 package com.weixin.util;
 
+import java.util.List;
+
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
+import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WinxinOauth2Token;
 
 public class AdvancedUtil {
+	
+	/**
+	 * 通过网页授权获取用户信息
+	 * @param accessToken 网页授权接口调用凭证
+	 * @param openId 用户标识
+	 * @return SNSUserInfo
+	 */
+	public static SNSUserInfo getSNSUserInfo(String accessToken,String openId){
+		SNSUserInfo sui = null;
+		
+		//拼接请求地址
+		String url = "https://api.weixin.qq.com/sns/userinfo?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
+		url = url .replace("ACCESS_TOKEN", accessToken);
+		url = url.replace("OPENID", openId);
+		
+		//通过网页授权获取用户信息
+		
+		JSONObject jb = CommonUtil.httpsRequest(url, "GET", null);
+		
+		if(null != jb) {
+			try {
+				
+				sui = new SNSUserInfo();
+				sui.setOpenId(jb.getString("openid"));
+				sui.setNickname(jb.getString("nickname"));
+				sui.setSex(jb.getInt("sex"));
+				sui.setProvince(jb.getString("province"));
+				sui.setCity(jb.getString("city"));
+				sui.setCountry(jb.getString("country"));
+				sui.setHeadImgUrl(jb.getString("headimgurl"));
+				sui.setPrivilegeList(JSONArray.toList(jb.getJSONArray("privilege"),List.class));
+				
+			} catch (Exception e) {
+				sui = null;
+				System.out.println(jb.toString());
+			}
+		}
+		
+		return sui;
+	}
+	
 	/**
 	 * 刷新网页授权凭证
 	 * 
