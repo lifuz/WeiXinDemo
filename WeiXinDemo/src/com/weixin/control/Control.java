@@ -115,7 +115,7 @@ public class Control extends HttpServlet {
 			TextMessageResp tmr = new TextMessageResp();
 			tmr.setToUserName(tm.getFromUserName());
 			tmr.setFromUserName(tm.getToUserName());
-			tmr.setContent(tm.getContent());
+			tmr.setContent(tm.getFromUserName());
 			tmr.setCreateTime(new Date().getTime());
 			tmr.setFuncFlag(0);
 			tmr.setMsgType(tm.getMsgType());
