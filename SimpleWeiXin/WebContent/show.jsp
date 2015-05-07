@@ -14,7 +14,7 @@
 
 <br><br>
 
-<h4><a>添加设备</a></h4>
+<h4><a href="./AddTerminal.jsp">添加设备</a></h4>
 
 </body>
 </html>

@@ -37,7 +37,9 @@ public class Register extends HttpServlet {
 					code);
 			
 			request.setAttribute("wat", wat.getOpenId());
-			request.getRequestDispatcher("").forward(request, response);
+			request.getRequestDispatcher("./register.jsp").forward(request, response);
+		}else{
+			response.getWriter().print("错误");
 		}
 
 	}

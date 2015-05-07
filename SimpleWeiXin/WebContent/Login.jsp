@@ -33,7 +33,7 @@
 
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="登陆"><a
-					href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb3d68c8c052dd522&redirect_uri=http%3a%2f%2fprd.hhzn.cn%2fWeiXinDemo%2fSimpleWeiXin%2fRegister&response_type=code&scope=snsapi_base&state=123#wechat_redirect">注册</a></td>
+					href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb3d68c8c052dd522&redirect_uri=http%3a%2f%2fprd.hhzn.cn%2fSimpleWeiXin%2fRegister&response_type=code&scope=snsapi_base&state=123#wechat_redirect">注册</a></td>
 			</tr>
 		</table>
 

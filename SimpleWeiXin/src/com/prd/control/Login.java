@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 		
 		Connection conn = MySqlConnection.getConnection();
 		
-		String sql = "select * from user where username = ? and password = ?";
+		String sql = "select * from user_table where username = ? and password = ?";
 		
 		try {
 			PreparedStatement pst = conn.prepareStatement(sql);
@@ -45,11 +45,12 @@ public class Login extends HttpServlet {
 			ResultSet rs = pst.executeQuery();
 			if(rs.next()) {
 				HttpSession session = request.getSession();
+				
 				session.setAttribute("user", user);
-				request.getRequestDispatcher("./show.jsp").forward(request, response);
+				session.setAttribute("id", rs.getInt(1));
+				request.getRequestDispatcher("./show.jsp").forward(request,
+						response);
 
-				
-				
 			} else {
 				response.getWriter().println("账户或密码错误");
 			}
