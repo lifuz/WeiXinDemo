@@ -20,6 +20,11 @@ import com.weixin.pojo.Token;
 import com.weixin.util.CommonUtil;
 import com.weixin.util.JsonUtils;
 
+/**
+ * 注册处理类
+ * @author 半夏微凉
+ *
+ */
 
 @WebServlet("/RegisterAction")
 public class RegisterAction extends HttpServlet {
@@ -27,12 +32,14 @@ public class RegisterAction extends HttpServlet {
        
    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//获取注册的信息
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
 		String openid = request.getParameter("openid");
 		
 		Connection conn = MySqlConnection.getConnection();
 		
+		//将用户信息保存到数据库
 		String sql = "insert into user_table(username,password,openid) values(?,?,?)";
 		PreparedStatement pt;
 		try {

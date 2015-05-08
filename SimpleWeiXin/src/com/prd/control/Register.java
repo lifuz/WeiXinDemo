@@ -12,7 +12,11 @@ import com.weixin.pojo.SNSUserInfo;
 import com.weixin.pojo.WinxinOauth2Token;
 import com.weixin.util.AdvancedUtil;
 
-
+/**
+ * 注册控制页面
+ * @author 半夏微凉
+ *
+ */
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;

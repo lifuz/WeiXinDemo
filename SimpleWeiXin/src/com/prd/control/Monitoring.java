@@ -13,7 +13,11 @@ import com.weixin.model.ModelMessage;
 import com.weixin.pojo.Token;
 import com.weixin.util.CommonUtil;
 import com.weixin.util.JsonUtils;
-
+/**
+ * 设备临界报警
+ * @author 半夏微凉
+ *
+ */
 public class Monitoring {
 
 	@SuppressWarnings("resource")
