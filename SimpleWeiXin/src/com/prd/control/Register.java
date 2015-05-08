@@ -1,6 +1,7 @@
 package com.prd.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +41,14 @@ public class Register extends HttpServlet {
 					"wxb3d68c8c052dd522", "29a52ea81a40f40ccbd62a6526f6f7f2",
 					code);
 			
-			request.setAttribute("wat", wat.getOpenId());
-			request.getRequestDispatcher("./register.jsp").forward(request, response);
+			//设置响应格式
+			response.setContentType("text/html; charset=utf-8");
+			PrintWriter out = response.getWriter();
+			
+			request.getSession().setAttribute("newId", wat.getOpenId());
+//			out.println("<script type='text/javascript'>alert('添加成功!');location.href='./loginout.jsp#toregister';</script>");
+			
+			response.sendRedirect("./loginout.jsp#toregister");
 		}else{
 			response.getWriter().print("错误");
 		}

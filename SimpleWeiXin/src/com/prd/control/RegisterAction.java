@@ -1,6 +1,7 @@
 package com.prd.control;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.prd.connect.MySqlConnection;
 import com.weixin.model.Data;
@@ -22,6 +24,7 @@ import com.weixin.util.JsonUtils;
 
 /**
  * 注册处理类
+ * 
  * @author 半夏微凉
  *
  */
@@ -29,17 +32,24 @@ import com.weixin.util.JsonUtils;
 @WebServlet("/RegisterAction")
 public class RegisterAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-   
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//获取注册的信息
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		// 获取注册的信息
 		String user = request.getParameter("user");
 		String pass = request.getParameter("pass");
-		String openid = request.getParameter("openid");
-		
+
+		HttpSession session = request.getSession();
+		String openid = (String) session.getAttribute("newId");
+
 		Connection conn = MySqlConnection.getConnection();
-		
-		//将用户信息保存到数据库
+
+		// 设置响应格式
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		response.setCharacterEncoding("utf-8");
+
+		// 将用户信息保存到数据库
 		String sql = "insert into user_table(username,password,openid) values(?,?,?)";
 		PreparedStatement pt;
 		try {
@@ -48,7 +58,7 @@ public class RegisterAction extends HttpServlet {
 			pt.setString(2, pass);
 			pt.setString(3, openid);
 			boolean flag = pt.execute();
-			if(!flag) {
+			if (!flag) {
 				ModelMessage mm = new ModelMessage();
 				mm.setTouser(openid);
 				mm.setTemplate_id("7S5O6b79HXQ7ggw3r0lgFYdQP0GbowXp6iyqgVoEbws");
@@ -70,32 +80,35 @@ public class RegisterAction extends HttpServlet {
 				data.setValue(pass);
 				data.setColor("#173177");
 				list.add(data);
-				
+
 				data = new Data();
 				data.setName("remark");
-				Token token = CommonUtil.getToken("wxb3d68c8c052dd522", "29a52ea81a40f40ccbd62a6526f6f7f2");
-				
+				Token token = CommonUtil.getToken("wxb3d68c8c052dd522",
+						"29a52ea81a40f40ccbd62a6526f6f7f2");
+
 				String url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN";
-				
+
 				url = url.replace("ACCESS_TOKEN", token.getAccessToken());
 				data.setValue("使用过程中如果遇到什么问题，欢迎致电本公司的免费热线电话：4008888888");
 				data.setColor("#173177");
 				list.add(data);
-				
+
 				mm.setData(list);
 				String json = JsonUtils.getJson(mm);
 				CommonUtil.httpsRequest(url, "POST", json);
+				
 				request.setAttribute("msg", "注册成功");
 			} else {
 				request.setAttribute("msg", "注册失败" + flag);
 			}
-			request.getRequestDispatcher("./Login.jsp").forward(request, response);
+			out.println("<script type='text/javascript'>alert('注册成功!');location.href='./loginout.jsp';</script>");
+//			request.getRequestDispatcher("./Login.jsp").forward(request,
+//					response);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 }
